@@ -1,0 +1,27 @@
+<!--
+<app-header></app-header>
+-->
+
+
+<div class="login-grid">
+    <h1><strong>Sign in</strong> </h1> <br>
+    <div class="form-group">
+        <input class="form-control" type="text" placeholder="Username (email) " [(ngModel)]="email" /> <br>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" />
+    </div>
+
+    <div *ngIf="error!=''" class="alert alert-danger">
+    </div>
+
+    <button (click)="fetchLogin()" class="btn btn-primary btn-block mt-5" type="submit">login</button>
+</div>
+
+
+
+<!--
+<p class="mt-4">Don't have an account yet? <a href="/singUp">Sign up here.</a></p>
+    <app-footer></app-footer>
+-->
