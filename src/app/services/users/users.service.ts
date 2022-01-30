@@ -10,13 +10,15 @@ export class UsersService {
   login(email: string, password: string) {
     const URL = 'http://localhost:8087';
 
-    const body = { title: 'Angular POST Request' };
-
-    return this.http.post<any>(`${URL}/auth/login/`, body, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Basic ' + btoa(email + ':' + password),
-      }),
-    });
+    return this.http.post<any>(
+      `${URL}/auth/login/`,
+      {},
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(email + ':' + password),
+        }),
+      }
+    );
   }
 }
