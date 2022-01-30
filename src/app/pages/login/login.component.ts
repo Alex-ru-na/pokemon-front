@@ -1,26 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/users.service';
-
+import { UsersService } from '../../services/users/users.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private route: Router) {}
 
   ngOnInit(): void {}
 
   public error: string = '';
+
   // variables
-  public email: string = '';
-  public password: string = '';
+  public email: string = 'algo@gmail.com';
+  public password: string = '1234';
+  public user: any = {};
 
   fetchLogin() {
     console.log({ user: this.email, pwd: this.password });
+
     this.usersService.login(this.email, this.password).subscribe({
       next: (data) => {
-        console.log({ data });
+        this.user = data.user;
+        localStorage.setItem('token', data.token);
+        this.route.navigate(['/dashboard'], { queryParams: this.user });
       },
       error: (error) => {
         console.log({ error });

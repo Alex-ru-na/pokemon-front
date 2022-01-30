@@ -3,21 +3,29 @@ import { RouterModule, Routes } from '@angular/router';
 
 // local modules
 import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
+import { AuthService } from './services/auth/auth.service';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'/home',
-    pathMatch: 'full'
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthService],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
