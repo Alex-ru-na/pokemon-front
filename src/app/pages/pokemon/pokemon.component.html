@@ -1,0 +1,20 @@
+<app-user></app-user>
+
+
+<div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
+
+    <h1><strong> Pokemon {{pokemonData.pokemon.name}}</strong></h1>
+
+    <div class="media pt-3 pl-3 pb-1">
+        <img height="35" src="{{ pokemonData.pokemon.sprites.back_default }}" alt="{{ pokemon.name }}">
+        <img height="35" src="{{ pokemonData.pokemon.sprites.back_shiny }}" alt="">
+        <img height="35" src="{{ pokemonData.pokemon.sprites.front_default }}" alt="">
+    </div>
+
+    <p class="ml-2 mt-0 mb-2"> <b>Abilities </b> </p>
+
+    <li *ngFor="let abilities of pokemonData.pokemon.abilities">
+        <span class="badge">{{abilities.ability.name}}</span> {{abilities.ability.name}}
+    </li>
+
+</div>

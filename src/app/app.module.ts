@@ -10,6 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/user.component';
 
 import { AuthService } from './services/auth/auth.service';
+import { PokemonComponent } from './pages/pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AuthService } from './services/auth/auth.service';
     LoginComponent,
     DashboardComponent,
     UserComponent,
+    PokemonComponent,
   ],
   imports: [
     BrowserModule,

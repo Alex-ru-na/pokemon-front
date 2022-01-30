@@ -11,7 +11,9 @@ export class UserComponent implements OnInit {
     this.user = {};
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user.name = localStorage.getItem('userName');
+  }
 
   logout() {
     localStorage.setItem('token', '');

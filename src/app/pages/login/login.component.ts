@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         this.user = data.user;
         localStorage.setItem('token', data.token);
-        this.route.navigate(['/dashboard'], { queryParams: this.user });
+        localStorage.setItem('userName', data.user.name);
+        this.route.navigate(['/dashboard']);
       },
       error: (error) => {
         console.log({ error });

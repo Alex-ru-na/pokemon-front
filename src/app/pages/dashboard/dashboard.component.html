@@ -1,3 +1,31 @@
-<app-user [user]="userLogged"></app-user>
+<app-user></app-user>
 
 <p><strong>Pokemones coming soon </strong></p>
+
+<table *ngFor="let pokemonItem of pokemonsData.pokemones.results">
+    <tr>
+        <td> <label>{{pokemonItem.name}}</label> </td>
+        <td> <button class="btn btn-primary" (click)="onSelect(pokemonItem)">details</button> </td>
+    </tr>
+</table>
+
+<!--
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+-->
+
+
+<!--  <app-pokemon [pokemon]="pokemon"></app-pokemon> -->
