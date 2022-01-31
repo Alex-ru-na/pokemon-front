@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //apiUrl: 'http://localhost:8087',
-  apiUrl: 'https://pokemon-api-dun.vercel.app',
+  //apiUrl: 'https://pokemon-api-dun.vercel.app',
+  apiUrl: 'https://pokemon-api-alex-ru.vercel.app',
 };
 
 /*
