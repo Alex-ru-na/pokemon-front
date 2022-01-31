@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { AuthService } from './services/auth/auth.service';
 
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: 'login',
@@ -28,6 +33,7 @@ const routes: Routes = [
     component: PokemonComponent,
     canActivate: [AuthService],
   },
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { UserComponent } from './pages/user/user.component';
 
 import { AuthService } from './services/auth/auth.service';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PokemonComponent } from './pages/pokemon/pokemon.component';
     DashboardComponent,
     UserComponent,
     PokemonComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
 <app-user></app-user>
 
-<p><strong>Pokemones coming soon </strong></p>
+<h1> <strong>Pokemones coming soon </strong> </h1>
 
 <table *ngFor="let pokemonItem of pokemonsData.pokemones.results">
     <tr>
-        <td> <label>{{pokemonItem.name}}</label> </td>
-        <td> <button class="btn btn-primary" (click)="onSelect(pokemonItem)">details</button> </td>
+        <td id='poke-name'> <label>{{pokemonItem.name}}</label> </td>
+        <td id='button'> <button class="btn btn-primary" (click)="onSelect(pokemonItem)">details</button> </td>
     </tr>
 </table>
 

@@ -1,0 +1,28 @@
+<main class="container">
+
+    <div id='main-container' class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Find Pokemon </h1>
+        <p class="lead">Find everything about pokemon.</p>
+        <img id='main-img' src="https://assets.pokemon.com/static2/_ui/img/og-default-image.jpeg" alt="">
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-1 mb-3 text-center">
+        <div class="col">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 fw-normal"></h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title"> test <small class="text-muted"> pokemon</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>images and data </li>
+                    </ul>
+                    <a class="w-100 btn btn-lg btn-primary" [routerLink]="['/login']" [queryParams]="{debug: true}"
+                        fragment="education">Get started </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>

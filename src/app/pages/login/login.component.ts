@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   constructor(private usersService: UsersService, private route: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.route.navigate(['/dashboard']);
+    }
+  }
 
   public error: string = '';
 
