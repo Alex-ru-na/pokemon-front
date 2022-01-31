@@ -1,19 +1,29 @@
 <app-user></app-user>
 
-<h1> <strong>Pokemones coming soon </strong> </h1>
+<h1> <strong>Pokemon List </strong> </h1>
 
-<table *ngFor="let pokemonItem of pokemonsData.pokemones.results">
-    <tr>
-        <td id='poke-name'> <label>{{pokemonItem.name}}</label> </td>
-        <td id='button'> <button class="btn btn-primary" (click)="onSelect(pokemonItem)">details</button> </td>
-    </tr>
-</table>
+<div *ngIf="pokemonLoaded == true">
+    <table *ngFor="let pokemonItem of pokemonsData.pokemones.results">
+        <tr>
+            <td id='poke-name'> <label>{{pokemonItem.name}}</label> </td>
+            <td id='button'> <button class="btn btn-primary" (click)="selectPokemon(pokemonItem)">details</button> </td>
+        </tr>
+    </table>
 
-<app-pagination *ngIf="pokemonLoaded" [numbers]="numbers" (newPageEvent)="selectPage($event)">
-</app-pagination>
-<!--
+</div>
 
--->
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item" (click)="selectPreviousPage()"><a class="page-link">Previous</a></li>
+        <li class="page-item"><a class="page-link"> </a></li>
+        <li class="page-item" (click)="selectNextPage()"><a class="page-link">Next</a></li>
+    </ul>
+</nav>
 
 
+<div *ngIf="pokemonLoaded == false" class="text-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 <!--  <app-pokemon [pokemon]="pokemon"></app-pokemon> -->

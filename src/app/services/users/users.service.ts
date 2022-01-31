@@ -21,4 +21,16 @@ export class UsersService {
       }
     );
   }
+
+  createUser(newUser: any) {
+    const URL = 'http://localhost:8087';
+
+    console.log({ newUser });
+
+    return this.http.post<any>(`${URL}/users/create/`, newUser, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
 }

@@ -17,6 +17,11 @@
     </div>
 
     <button (click)="fetchLogin()" class="btn btn-primary btn-block mt-5" type="submit">login</button>
+
+    <div>Don't you have account ? <a [routerLink]="['/sign-up']" [queryParams]="{debug: true}" fragment="education">
+            <strong> register here... </strong>
+        </a> </div>
+
 </div>
 
 

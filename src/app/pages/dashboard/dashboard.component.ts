@@ -17,7 +17,10 @@ export class DashboardComponent implements OnInit {
   userLogged: any = {};
   numbers = { numItems: 100, perPage: 10 };
 
-  pokemonLoaded: Boolean = false;
+  pokemonLoaded: Boolean = true;
+
+  nextLink: string = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=10';
+  previousLink: string = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=10';
 
   pokemon: any = {
     name: '',
@@ -36,7 +39,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onSelect(pokemonItem: any) {
+  selectPokemon(pokemonItem: any) {
     this.route.navigate(['/pokemon'], {
       queryParams: {
         name: pokemonItem.name,
@@ -47,12 +50,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getPokemones(offset: Number = 0, limit: Number = 10) {
+  getPokemones(offset: string = '0', limit: string = '10') {
     //offset: Number, limit: Number
     this.pokemonService.getPokemones(offset, limit).subscribe({
       next: (data) => {
         this.pokemonsData = data;
-        this.numbers.numItems = this.pokemonsData.pokemones.count;
+        //this.numbers.numItems = this.pokemonsData.pokemones.count;
+
+        this.nextLink = this.pokemonsData.pokemones.next;
+        this.previousLink = this.pokemonsData.pokemones.previous;
+
         this.pokemonLoaded = true;
       },
       error: (error) => {
@@ -62,9 +69,69 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  selectPage(item: any) {
-    this.getPokemones(item.perPage * item.i, item.perPage);
+  getParameterByName(name: string, url: string) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
 
-    console.log({ item });
+  selectPreviousPage() {
+    console.log({ PL: this.previousLink });
+
+    if (!this.previousLink) {
+      return;
+    }
+
+    let offset = this.getParameterByName('offset', this.previousLink) || '0';
+    let limit = this.getParameterByName('limit', this.previousLink) || '10';
+
+    this.pokemonService.getPokemones(offset, limit).subscribe({
+      next: (data) => {
+        this.pokemonsData = data;
+        this.numbers.numItems = this.pokemonsData.pokemones.count;
+
+        this.nextLink = this.pokemonsData.pokemones.next;
+        this.previousLink = this.pokemonsData.pokemones.previous;
+
+        this.pokemonLoaded = true;
+      },
+      error: (error) => {
+        // localStorage.setItem('token', '');
+        console.log({ error });
+      },
+    });
+
+    this.pokemonLoaded = false;
+  }
+
+  selectNextPage() {
+    console.log({ PL: this.nextLink });
+
+    if (!this.nextLink) {
+      return;
+    }
+
+    let offset = this.getParameterByName('offset', this.nextLink) || '0';
+    let limit = this.getParameterByName('limit', this.nextLink) || '10';
+
+    this.pokemonService.getPokemones(offset, limit).subscribe({
+      next: (data) => {
+        this.pokemonsData = data;
+
+        this.nextLink = this.pokemonsData.pokemones.next;
+        this.previousLink = this.pokemonsData.pokemones.previous;
+
+        this.pokemonLoaded = true;
+      },
+      error: (error) => {
+        // localStorage.setItem('token', '');
+        console.log({ error });
+      },
+    });
+
+    this.pokemonLoaded = false;
   }
 }

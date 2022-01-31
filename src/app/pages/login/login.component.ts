@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   public user: any = {};
 
   fetchLogin() {
-    console.log({ user: this.email, pwd: this.password });
+    //console.log({ user: this.email, pwd: this.password });
 
     this.usersService.login(this.email, this.password).subscribe({
       next: (data) => {
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         this.route.navigate(['/dashboard']);
       },
       error: (error) => {
+        error = error.statusText;
         console.log({ error });
       },
     });

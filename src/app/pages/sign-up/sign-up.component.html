@@ -1,0 +1,51 @@
+<form class="singup-grid" [formGroup]="form" (ngSubmit)="saveUser($event)">
+
+    <h1> <strong> Sign up</strong> </h1>
+    <div class="mb-3">
+        <label for="exampleInput1" class="form-label">User name </label>
+        <input type="email" class="form-control" formControlName="name" placeholder="user name"
+            aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInput1" class="form-label">Nick name </label>
+        <input type="email" class="form-control" formControlName="nick" placeholder="nick name"
+            aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="it will be for login"
+            aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInput1" class="form-label pr-4">Team Color :</label>
+        <select class="custom-select w-80" formControlName="team">
+            <option value="blue">blue</option>
+            <option value="red">red</option>
+            <option value="yellow">yellow</option>
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword2" class="form-label">Password confirmation </label>
+        <input type="password" class="form-control" formControlName="passwordConfirmation">
+    </div>
+
+    <div *ngIf="error!=''" class="alert alert-danger">
+        {{error}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div>Do you have account ? <a [routerLink]="['/login']" [queryParams]="{debug: true}" fragment="education">
+            <strong> login here... </strong>
+        </a> </div>
+</form>
