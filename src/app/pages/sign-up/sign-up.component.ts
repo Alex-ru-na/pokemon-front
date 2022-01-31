@@ -50,6 +50,16 @@ export class SignUpComponent implements OnInit {
       return false;
     }
 
+    if (!form.value['nick']) {
+      this.error = 'Nick name required';
+      return false;
+    }
+
+    if (!form.value['team']) {
+      this.error = 'Team color required';
+      return false;
+    }
+
     if (!form.value['email']) {
       this.error = 'Email required';
       return false;

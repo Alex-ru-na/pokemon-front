@@ -23,17 +23,20 @@ export class LoginComponent implements OnInit {
   public user: any = {};
 
   fetchLogin() {
-    //console.log({ user: this.email, pwd: this.password });
-
     this.usersService.login(this.email, this.password).subscribe({
       next: (data) => {
         this.user = data.user;
+        this.error = '';
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.user.name);
         this.route.navigate(['/dashboard']);
       },
       error: (error) => {
-        error = error.statusText;
+        if (error.statusText == 'Unauthorized') {
+          this.error = 'password or email is not correct';
+          return;
+        }
+
         console.log({ error });
       },
     });
