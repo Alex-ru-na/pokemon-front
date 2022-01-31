@@ -35,6 +35,11 @@ export class SignUpComponent implements OnInit {
   }
 
   validateForm(form: any) {
+    if (!form.value['password']) {
+      this.error = `The password is required`;
+      return false;
+    }
+
     if (form.value['password'] != this.form.value['passwordConfirmation']) {
       this.error = `The passwords don't match`;
       return false;
@@ -73,8 +78,6 @@ export class SignUpComponent implements OnInit {
       team: this.form.value['team'],
       password: this.form.value['password'],
     };
-
-    console.log({ dataForm: body });
 
     this.usersService.createUser(body).subscribe({
       next: (data) => {

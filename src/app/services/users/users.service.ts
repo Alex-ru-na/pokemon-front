@@ -27,8 +27,6 @@ export class UsersService {
     //const URL = 'http://localhost:8087';
     const URL = environment.apiUrl;
 
-    console.log({ newUser });
-
     return this.http.post<any>(`${URL}/users/create/`, newUser, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
