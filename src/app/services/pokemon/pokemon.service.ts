@@ -18,7 +18,7 @@ export class PokemonService {
     return this.http.get(URL + `/pokemon/${id}`, httpOptions);
   }
 
-  getPokemones() {
+  getPokemones(offset: Number, limit: Number) {
     const URL = 'http://localhost:8087';
     const httpOptions = {
       headers: new HttpHeaders({
@@ -27,6 +27,6 @@ export class PokemonService {
       }),
     };
 
-    return this.http.get(URL + '/pokemon/', httpOptions);
+    return this.http.get(`${URL}/pokemon/${offset}/${limit}`, httpOptions);
   }
 }

@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   public error: string = '';
 
   // variables
-  public email: string = 'algo@gmail.com';
-  public password: string = '1234';
+  public email: string = '';
+  public password: string = '';
   public user: any = {};
 
   fetchLogin() {

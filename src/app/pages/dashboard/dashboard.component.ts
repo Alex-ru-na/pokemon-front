@@ -15,30 +15,19 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   userLogged: any = {};
+  numbers = { numItems: 100, perPage: 10 };
+
+  pokemonLoaded: Boolean = false;
 
   pokemon: any = {
-    name: 'bulbasaur',
+    name: '',
     sprites: {
-      back_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
-      back_female: null,
+      back_default: '',
+      back_female: '',
     },
   };
 
-  pokemons = [
-    { id: 1, name: 'Dr Nice' },
-    { id: 2, name: 'Narco' },
-    { id: 3, name: 'Bombasto' },
-    { id: 4, name: 'Celeritas' },
-    { id: 5, name: 'Magneta' },
-    { id: 6, name: 'RubberMan' },
-    { id: 7, name: 'Dynama' },
-    { id: 8, name: 'Dr IQ' },
-    { id: 9, name: 'Magma' },
-    { id: 10, name: 'Tornado' },
-  ];
-
-  pokemonsData: any = { pokemones: { results: [] } };
+  pokemonsData: any = { pokemones: { results: [] }, count: 0 };
 
   ngOnInit(): void {
     this.routeActivated.queryParams.subscribe((user) => {
@@ -58,15 +47,24 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getPokemones() {
-    this.pokemonService.getPokemones().subscribe({
+  getPokemones(offset: Number = 0, limit: Number = 10) {
+    //offset: Number, limit: Number
+    this.pokemonService.getPokemones(offset, limit).subscribe({
       next: (data) => {
         this.pokemonsData = data;
-        console.log({ data });
+        this.numbers.numItems = this.pokemonsData.pokemones.count;
+        this.pokemonLoaded = true;
       },
       error: (error) => {
+        // localStorage.setItem('token', '');
         console.log({ error });
       },
     });
+  }
+
+  selectPage(item: any) {
+    this.getPokemones(item.perPage * item.i, item.perPage);
+
+    console.log({ item });
   }
 }
