@@ -97,12 +97,5 @@ export class SignUpComponent implements OnInit {
         console.log({ error });
       },
     });
-
-    //
-    //      this.usersService.createUser(body).subscribe((res) => {
-    //        console.log(res);
-    //        this.form.reset();
-    //        this.route.navigate(['/login']);
-    //      });
   }
 }

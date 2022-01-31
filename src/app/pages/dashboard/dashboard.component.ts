@@ -83,8 +83,6 @@ export class DashboardComponent implements OnInit {
   }
 
   selectPreviousPage() {
-    console.log({ PL: this.previousLink });
-
     if (!this.previousLink) {
       return;
     }
@@ -112,8 +110,6 @@ export class DashboardComponent implements OnInit {
   }
 
   selectNextPage() {
-    console.log({ PL: this.nextLink });
-
     if (!this.nextLink) {
       return;
     }
