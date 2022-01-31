@@ -63,6 +63,10 @@ export class DashboardComponent implements OnInit {
         this.pokemonLoaded = true;
       },
       error: (error) => {
+        if (error.statusText == 'Unauthorized') {
+          localStorage.setItem('token', '');
+          localStorage.setItem('userName', '');
+        }
         // localStorage.setItem('token', '');
         console.log({ error });
       },
